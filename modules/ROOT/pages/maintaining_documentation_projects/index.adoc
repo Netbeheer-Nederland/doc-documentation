@@ -1,7 +1,9 @@
 = Maintaining Documentation Projects
 
+////
 Authors::
     * mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (https://www.alliander.com/[Alliander])
+////
 
 '''
 
