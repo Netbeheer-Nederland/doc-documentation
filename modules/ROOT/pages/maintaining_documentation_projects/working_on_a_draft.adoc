@@ -16,10 +16,30 @@ Content is written in the AsciiDoc markup language. Its well-standardized and ex
 You can write AsciiDoc in any IDE or text editor. For learning the language refer to the large variety of resources on the web.
 // TODO: Refer to some helpful resources such as AsciiDoctor's primer, the AsciiDoc website and perhaps some other tutorials or guides?
 
-=== Use Antora resource IDs instead of local paths
+xref:linkml-guide::
+
+=== Making cross-references
+
+Using Antora's resource IDs you can easily cross-reference any resource -- or element that's part of it -- from
+
+To make cross-references from one resource to another,
+
+or to another resource that's known to Antora, you can make use of the `xref` macro. You can only reference resources known to Antora, i.e. coming from specified content sources.
+
+[TIP]
+If you want to refer to other resources that are not
+
+==== Prefer referring to explicit versions
+
+
+For a very detailed explanation, refer to: https://docs.antora.org/antora/latest/page/page-links/[Create Page Links].
+
+
+
+https://docs.antora.org/antora/latest/page/xref/
 
 [IMPORTANT]
-We make use of Antora for coordination and aggregation of documentation projects. When cross-referencing resources, do not use relative paths, but use Antora resource IDs. Read more on why this is encouraged https://antora.zulipchat.com/#narrow/stream/282400-users/topic/Local.20references.20compatible.20with.20both.20Antora.20and.20AsciiDoctor[in this issue].
+When cross-referencing resources, do not use relative paths, but use Antora resource IDs. Read more on why this is encouraged https://antora.zulipchat.com/#narrow/stream/282400-users/topic/Local.20references.20compatible.20with.20both.20Antora.20and.20AsciiDoctor[in this issue].
 
 === Embedding Diagrams.net (draw.io) images
 
