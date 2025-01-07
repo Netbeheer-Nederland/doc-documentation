@@ -1,0 +1,109 @@
+= Versioning
+
+[WARNING]
+This is a work in progress.
+
+== What can and cannot be not versioned?
+
+Versioning can be applied exclusively to documentation projects. This means that whenever you intend to version some set of documents, it needs to become a project. Note that documents within such a project cannot be independently versioned. This is by designfootnote:[To those familiar with solutions such as Microsoft Word and Atlassian Confluence this might seem alien. Really though, it is their choice to do versioning at the document level which is limiting, since now there is no decent way of versioning a set of documents that you consider a project.].
+
+[NOTE]
+In cases where you do wish to version just a single document, simply make a documentation project consisting of solely that single document. Note that this is not some kind of hack, it just means your project happens to consist of a single document.
+
+[TIP]
+Whether a set of related documents seems to evolve in tandem, this could be an indication these documents belong in a documentation project together.
+
+== Versioning strategy
+
+=== Major and minor versions
+
+Each revision consists of a _major_ and a _minor_ versionfootnote:[Sadly, these are pretty vague descriptions and lack clear rules for deciding when to increment either the major or minor version. We do not currently have sufficient reason nor experience to spend time on refining this further. Perhaps in the future we will improve this.].
+
+* When the major version between revisions differs, the contents of the documentation are different to the extent where information has fundamentally changed. These revisions can contradict, or represent an entire new iteration of the project with lots of different information or a very different structure.
+* When only the minor version between revisions differs, the newer one may have new sections added, or some refactoring and typo fixing might have occurred.
+
+[NOTE]
+Due to the lack of stricter definitions and rules, the decision whether to increment a major or minor version is more art than science. Writers possess quite a bit of freedom here.
+
+Later there will be an <<major-minor-example,example>> which hopefully helps make all of this a bit more tangible.
+
+=== Version identifiers
+
+We use the following version numbering scheme:
+
+.Version numbering scheme
+----
+vMAJOR.MINOR
+----
+
+* `v` stands for 'version'.
+* `MAJOR` represents the major version of the revision.
+* `MAJOR` represents the minor version of the revision.
+* `MAJOR` and `MINOR` are non-negative, whole numbers.
+
+.Major and minor versions
+[#major-minor-example]
+====
+Suppose we have a revision with version number 1.0. We are working on it
+We might have versions 1.0 and 1.1, which are both major version 1 but differ in their minor version. On the other hand we might also have a version 2.0, which has a different major version.
+====
+
+
+==== Latest version
+
+In addition to the version numbering scheme above, the special version identifier `latest` is introduced. It points to the latest version.
+
+
+== Using Git for versioning
+
+
+=== Branches for each major version
+
+For each major version, a branch will be created. We will refer to these branches as _release branches_.
+
+Further work on a major version is done by branching off _draft branches_ from a release branch.
+
+.Branching off feature branches and merging to release branch
+====
+////
+gitGraph
+    branch v1
+    checkout v1
+    commit tag: "v1.0"
+    commit
+    branch v1_add-table
+    checkout v1_add-table
+    commit
+    commit
+    checkout v1
+    branch v1_new-logo
+    commit
+    checkout v1
+    merge v1_new-logo
+    commit tag: "v1.1"
+    checkout v1_add-table
+    commit
+    commit
+    checkout v1
+    merge v1_add-table
+    commit tag: "v1.2"
+////
+image::ex_git_branching.png[]
+====
+
+. `v1` is the release branch for major version `1`.
+. Whenever a version
+. Someone is going to add a table to some page in the project and creates a feature branch `v1/add-table` to work on that in.
+. Someone else is changing the logo of the project. This person creates their own feature branch for this: `v1/new-logo`.
+. Once the changes are done,
+
+
+=== Use tags to publish releases
+
+For each minor version, a tag will be created.
+
+
+
+=== `main` branch for new major release
+
+== Working with versions in Antora
